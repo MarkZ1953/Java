@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Tienda {
 
     public static void main(String[] args) {
-        String[] productos = {"CocaCola", "Chocorramo", "PonyMalta", "Galletas de Chocolate", "Naranja"};
+        String[] productos = {"CocaCola", "Chocorramo", "PonyMalta", "Galletas de Chocolate", "Naranjas"};
         double[] precios = {2000, 1500, 2500, 1000, 500};
         int[] cantidades = new int[5];
         double subtotal = 0;
@@ -41,6 +41,7 @@ public class Tienda {
                 System.out.println(cantidades[i] + " x " + productos[i] + " - $" + precioProducto);
             }
         }
+        scanner.close();
 
         System.out.println("Subtotal: $" + subtotal);
         System.out.println("Total IVA (19%): $" + totalIva);
