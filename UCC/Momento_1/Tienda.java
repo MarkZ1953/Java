@@ -1,4 +1,4 @@
-package UCC;
+package UCC.Momento_1;
 import java.util.Scanner;
 public class Tienda {
 

@@ -1,4 +1,4 @@
-package UCC.Evento_Evaluativo_Momento_1;
+package UCC.Momento_1.Evento_Evaluativo_Momento_1;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -8,7 +8,7 @@ public class Nota_Final_Semestre {
     public static void main(String[] args) {
 
         System.out.println("Calculadora - Final de Semestre");
-        
+
         List<Integer> ListaCreditos = new ArrayList<Integer>();
         List<Float> ListaNotas = new ArrayList<Float>();
         DecimalFormat df = new DecimalFormat("#0.00");

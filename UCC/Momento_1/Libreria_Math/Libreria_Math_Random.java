@@ -1,4 +1,4 @@
-package UCC;
+package UCC.Momento_1.Libreria_Math;
 import javax.swing.JOptionPane;
 
 public class Libreria_Math_Random {
