@@ -8,14 +8,12 @@ public class Nota_Final_Semestre {
     public static void main(String[] args) {
 
         System.out.println("Calculadora - Final de Semestre");
-        // JOptionPane.showInputDialog(null, "Ingrese el nombre");
-        // List<String> ListaCursos = new ArrayList<String>();
+        
         List<Integer> ListaCreditos = new ArrayList<Integer>();
         List<Float> ListaNotas = new ArrayList<Float>();
         DecimalFormat df = new DecimalFormat("#0.00");
 
         for (int i = 0; i < 4; i++) {
-            // ListaCursos.add(i, JOptionPane.showInputDialog(null, "Ingrese el Curso N"+ (i+1)));
 
             ListaCreditos.add(i, Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los creditos del Curso N" + (i+1),"Calculadora - Final de Semestre",3)));
 
