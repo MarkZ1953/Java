@@ -6,6 +6,8 @@ import java.util.Locale;
 public class Sueldo_Profesor_Escolaridad {
     public static void main(String[] args) {
         
+        final double salariomin = 1_160_000;
+
         NumberFormat nfc = NumberFormat.getCurrencyInstance(Locale.US);
 
         String eEscolaridad = JOptionPane.showInputDialog(null, "Ingrese su Escolaridad :\n- Profesional\n- Especialista\n- Magister\n- Doctor", "Escolaridad", 3);

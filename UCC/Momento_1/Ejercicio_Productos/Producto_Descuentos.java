@@ -1,4 +1,4 @@
-package UCC.Momento_1.Ejercicio;
+package UCC.Momento_1.Ejercicio_Productos;
 import javax.swing.JOptionPane;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -32,6 +32,6 @@ public class Producto_Descuentos {
         JOptionPane.showMessageDialog(null,"Precio Producto : " + nfc.format(vProducto) +
         "\nMetodo de Pago : " + metodo +
         "\nDescuento : " + nfc.format(desc * vProducto) + 
-        "\n Total a Pagar : " + nfc.format(vProducto - (vProducto * desc)), "Colilla de Pago", 3);
+        "\nTotal a Pagar : " + nfc.format(vProducto - (vProducto * desc)), "Colilla de Pago", 3);
     }
 }

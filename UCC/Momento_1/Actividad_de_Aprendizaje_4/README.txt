@@ -17,6 +17,7 @@ Calcular e Imprimir :
 - Total descuentos
 - Sueldo Neto
 
-Nota: los descuentos se aplican solo si el sueldo es mayo a 1 SMLV
+Nota: los descuentos se aplican solo si el sueldo es mayo a 1 SMLV, y si es menor a un salario minimo se le debe 
+sumar el subsidio del transporte al salario final.
 
 ---------------------------------------------------------------------------------------------------------------------
