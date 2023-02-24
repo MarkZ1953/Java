@@ -9,6 +9,5 @@ public class Sueldo_Profesor {
 
         float salario = Float.parseFloat(JOptionPane.showInputDialog(null, "Ingrese su salario en bruto: "));
 
-        
     }   
 }
