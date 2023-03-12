@@ -4,8 +4,6 @@
  */
 package com.mycompany.interfaz;
 
-import java.math;
-import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
@@ -189,6 +187,7 @@ public class CalculoAreas extends javax.swing.JFrame {
         
         switch (figuraSeleccionada) {
             case "Cuadrado" -> {
+                txt1.setEnabled(true);
                 txt1.setText("");
                 txt2.setText("");
                 txt3.setText("");
@@ -196,6 +195,7 @@ public class CalculoAreas extends javax.swing.JFrame {
                 lb2.setText("Lado");
             }
             case "Rectangulo" -> {
+                txt1.setEnabled(true);
                 txt1.setText("");
                 txt2.setText("");
                 txt3.setText("");
@@ -203,6 +203,7 @@ public class CalculoAreas extends javax.swing.JFrame {
                 lb2.setText("Altura");
             }
             case "Triangulo" -> {
+                txt1.setEnabled(true);
                 txt1.setText("");
                 txt2.setText("");
                 txt3.setText("");
@@ -215,6 +216,7 @@ public class CalculoAreas extends javax.swing.JFrame {
                 lb1.setText("Pi");
                 lb2.setText("Radio");
                 txt1.setText(piString);
+                txt1.setEnabled(false);
                 txt2.setText("");
                 txt3.setText("");
             }
