@@ -1,13 +1,10 @@
 package Condicionales;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Switch {
     public static void main(String[] args) {
-      Scanner scanner = new Scanner(System.in);
-      System.out.println("Ingresa un numero : ");
-      int diaSemana = scanner.nextInt();
-      System.out.println("Has ingresado el numero : " + diaSemana);
-      scanner.close();
+        
+        int diaSemana = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese un numero"));
 
       switch (diaSemana) {
         case 1:
@@ -32,7 +29,7 @@ public class Switch {
             System.out.println("Domingo");
             break;
         default:
-          System.out.println("Día de la semana no válido");
+          JOptionPane.showMessageDialog(null, "Día de la semana no válido", "Error", 1);
           break;
       }
     }
