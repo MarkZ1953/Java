@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
  * @author castr
  */
 public class SueldoProfesor extends javax.swing.JFrame {
+    
+    static int vhProfesional = 50000;
 
     /**
      * Creates new form SueldoProfesor
@@ -190,21 +192,23 @@ public class SueldoProfesor extends javax.swing.JFrame {
         
         NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
         
+        int vEscolaridad;
+        
         switch (escolaridad) {
             case "Profesional" ->                 {
-                    int vEscolaridad  = 50000;
+                    vEscolaridad  = 50000;
                     txtValorHora.setText(nf.format(vEscolaridad));
                 }
             case "Especialista" ->                 {
-                    int vEscolaridad  = 55000;
+                    vEscolaridad  = 55000;
                     txtValorHora.setText(nf.format(vEscolaridad));
                 }
             case "Magister" ->                 {
-                    int vEscolaridad  = 60000;
+                    vEscolaridad  = 60000;
                     txtValorHora.setText(nf.format(vEscolaridad));
                 }
             case "Doctor" ->                 {
-                    int vEscolaridad  = 70000;
+                    vEscolaridad  = 70000;
                     txtValorHora.setText(nf.format(vEscolaridad));
                 }
             default -> {
@@ -216,7 +220,7 @@ public class SueldoProfesor extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             int hTrabajadas = Integer.parseInt(txtHorasTrabajadas.getText());
-            JOptionPane.showMessageDialog(rootPane, txtValorHora);
+            JOptionPane.showMessageDialog(rootPane,"");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error : " + e);
         }
