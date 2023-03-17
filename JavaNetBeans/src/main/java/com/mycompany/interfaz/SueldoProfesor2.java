@@ -277,31 +277,12 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
         int spinner = (int) sprHijos.getValue();
         System.out.println(spinner);
         
-        String escolaridad = (String) cbEscolaridad.getSelectedItem();
-        
         NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
         
         double vtPh = vSubHijo * spinner;
         System.out.println(vtPh);
         
-        int vEscolaridad = 0;
-        
-        switch (escolaridad) {
-            case "Profesional" ->                 {
-                    vEscolaridad  = 50000;
-                }
-            case "Especialista" ->                 {
-                    vEscolaridad  = 55000;
-                }
-            case "Magister" ->                 {
-                    vEscolaridad  = 60000;
-                }
-            case "Doctor" ->                 {
-                    vEscolaridad  = 90000;
-                }
-            default -> {
-            }
-        }
+        int vEscolaridad = retornarEscolaridad();
         
         double nHoras = Integer.parseInt(txtHorasTrabajadas.getText());
         double desPension = 0.05;
