@@ -63,6 +63,7 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
         En el caso de que el salario neto sea menor a un salario minimo el descuento de Salud y Pension es 0 o 
         No aplica.
         */
+        
         txtDescuentoPension.setText(descuentos);
         txtDescuentoSalud.setText(descuentos);
         
@@ -72,6 +73,7 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
         Independientemente del salario que tenga la persona, por cada hijo que tenga se le dara un subsidio
         de 150.000, cabe aclarar que sino tiene hijos, no se le dara subsidio o no aplicara.
         */
+        
         int spinner = (int) sprHijos.getValue(); //Se recolecta el valor que se encuentre en el Spinner.
         txtSubsidioHijos.setText(nf.format(vSubHijo*spinner)); 
         
@@ -81,6 +83,7 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
         El sueldo bruto es simplemente lo que nos de entre el numero de horas trabajadas multiplicado por el valor
         de la escolaridad que tenga.
         */
+        
         txtSueldoBruto.setText(nf.format((nHoras*vEscolaridad)));
         
         //------------------------------------------------------------------------------------------------------|
