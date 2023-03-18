@@ -16,7 +16,7 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
     private final double SalarioMinimo = 1_300_000;
     private int AuxilioTransporte =  140_606;
     private final double vSubHijo = 150_000; 
-    private NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US); //Numberformat, encargada de darle formato a los numeros.
+    private final NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US); //Numberformat, encargada de darle formato a los numeros.
     private final double desPension = 0.05; //Descuento de Pension : 5%
     private final double desSalud = 0.05; //Descuento de Salud : 5%
     
@@ -390,7 +390,7 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
 
     private void cbEscolaridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEscolaridadActionPerformed
         // TODO add your handling code here:
-     
+        
         txtValorHora.setText(nf.format(retornarEscolaridad()));
             
     }//GEN-LAST:event_cbEscolaridadActionPerformed
