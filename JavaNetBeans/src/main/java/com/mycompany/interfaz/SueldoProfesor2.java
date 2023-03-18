@@ -14,10 +14,12 @@ import javax.swing.JOptionPane;
 public class SueldoProfesor2 extends javax.swing.JFrame {
 
     private final double SalarioMinimo = 1_300_000;
-    private double AuxilioTransporte =  140_606;
-    private final double vSubHijo = 150_000;
-    private NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
-
+    private int AuxilioTransporte =  140_606;
+    private final double vSubHijo = 150_000; 
+    private NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US); //Numberformat, encargada de darle formato a los numeros.
+    private final double desPension = 0.05; //Descuento de Pension : 5%
+    private final double desSalud = 0.05; //Descuento de Salud : 5%
+    
     /**
      * Creates new form SueldoProfesor
      */
@@ -50,6 +52,72 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
             }
         }
         return vEscolaridad;
+    }
+    
+    public void cambiarCaracteristicas(String descuentos,int vEscolaridad,int nHoras,int AuxTransporte,String SueldoNeto,double Produccion,String TotalDescuentos) {
+        
+        //------------------------------------------------------------------------------------------------------|
+        
+        /*
+        Descuento de Pension y Salud tienen el mismo porcentaje de descuento : 0.05 o 5%
+        En el caso de que el salario neto sea menor a un salario minimo el descuento de Salud y Pension es 0 o 
+        No aplica.
+        */
+        txtDescuentoPension.setText(descuentos);
+        txtDescuentoSalud.setText(descuentos);
+        
+        //------------------------------------------------------------------------------------------------------|
+        
+        /*
+        Independientemente del salario que tenga la persona, por cada hijo que tenga se le dara un subsidio
+        de 150.000, cabe aclarar que sino tiene hijos, no se le dara subsidio o no aplicara.
+        */
+        int spinner = (int) sprHijos.getValue(); //Se recolecta el valor que se encuentre en el Spinner.
+        txtSubsidioHijos.setText(nf.format(vSubHijo*spinner)); 
+        
+        //------------------------------------------------------------------------------------------------------|
+        
+        /*
+        El sueldo bruto es simplemente lo que nos de entre el numero de horas trabajadas multiplicado por el valor
+        de la escolaridad que tenga.
+        */
+        txtSueldoBruto.setText(nf.format((nHoras*vEscolaridad)));
+        
+        //------------------------------------------------------------------------------------------------------|
+        
+        /*
+        El subsidio o auxilio de transporte, solo aplica cuando la persona tiene un salario bruto inferior a 
+        2 salarios minimos.
+        */
+        
+        txtSubsidioTransporte.setText(nf.format(AuxilioTransporte));
+        
+        //------------------------------------------------------------------------------------------------------|
+        
+        /*
+        El subsidio de produccion se aplica cuando la persona ha hecho algun aporte cientifico o haya
+        aparecido en una de estas. En el caso de que si, se le dara un 3% mas sobre el salario bruto.
+        */
+        
+        txtSubsidioProduccion.setText(nf.format(Produccion));
+        
+        //------------------------------------------------------------------------------------------------------|
+        
+        /*
+        La suma de todos los descuentos
+        */
+        
+        txtTotalDescuentos.setText(TotalDescuentos);
+        
+        //------------------------------------------------------------------------------------------------------|
+        
+        /*
+        El calculo y la sumatoria de todos los descuentos y los aumentos de la persona.
+        */
+        
+        txtSueldoNeto.setText(SueldoNeto);
+        
+        //------------------------------------------------------------------------------------------------------|
     }
     
     /**
@@ -332,15 +400,9 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
 
         int vEscolaridad = retornarEscolaridad(); 
         
-        double nHoras = Integer.parseInt(txtHorasTrabajadas.getText()); //Numero de horas trabajadas
-        double desPension = 0.05; //Descuento de Pension : 5%
-        double desSalud = 0.05; //Descuento de Salud : 5%
+        int nHoras = Integer.parseInt(txtHorasTrabajadas.getText()); //Numero de horas trabajadas
         
         if ((nHoras*vEscolaridad) > (SalarioMinimo*2)) {
-            /*
-            El auxilio de transporte se aplica cuando el numero de horas trabajadas multiplicado por la escolaridad de la persona
-            es mayor a dos veces al salario minimo, por lo que si es mayor entonces no se le da subsidio o auxilio de transporte.
-            */
             AuxilioTransporte = 0;
         }
        
@@ -353,51 +415,27 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
         try {
             if ((nHoras*vEscolaridad) > (SalarioMinimo)) {
                 
+                //-----------------------------------------------------------------------------------------------|
                 /*
                 Si el numero de horas multiplicado por el valor de la escolaridad es mayor a un salario minimo
                 Se ejecuta el siguiente codigo
                 */
-                
                 //-----------------------------------------------------------------------------------------------|
                 
-                String descuentos = nf.format((nHoras*vEscolaridad)*desPension);
-                /*
-                Descuento de Pension y Salud tienen el mismo porcentaje de descuento : 0.05 o 5%
-                */
-                txtDescuentoPension.setText(descuentos);
-                txtDescuentoSalud.setText(descuentos);
-                
-                //-----------------------------------------------------------------------------------------------|
-              
-                txtSubsidioHijos.setText(nf.format(vSubHijo*spinner));
-                
-                //El valor del Auxilio de tranporte depende de la condicion de arriba.
-                txtSubsidioTransporte.setText(nf.format(0));
-                
-                String sueldo = nf.format(((nHoras*vEscolaridad) - ((nHoras*vEscolaridad)*0.10))+(vtPh)+(produccion));
                 String tDescuentos = nf.format((nHoras*vEscolaridad)*0.10);
+                String descuentos = nf.format((nHoras*vEscolaridad)*desPension);
+                String sueldoneto = nf.format(((nHoras*vEscolaridad) - ((nHoras*vEscolaridad)*0.10))+(vtPh)+(produccion));
                 
-                txtTotalDescuentos.setText(tDescuentos);
-                
-                txtSubsidioProduccion.setText(nf.format(produccion));
-                
-                txtSueldoBruto.setText(nf.format((nHoras*vEscolaridad)));
-                txtSueldoNeto.setText(sueldo);
-                
+                cambiarCaracteristicas(descuentos,vEscolaridad,nHoras,AuxilioTransporte,sueldoneto,produccion,tDescuentos);
+          
             } else {
                 
-                txtSubsidioProduccion.setText(nf.format(produccion));
-                txtSubsidioTransporte.setText(nf.format(AuxilioTransporte));
-                txtDescuentoPension.setText(nf.format(0));
-                txtSubsidioHijos.setText(nf.format(vSubHijo*spinner));
-                txtDescuentoSalud.setText(nf.format(0));
-                String sueldoneto = (nf.format((nHoras*vEscolaridad)+(vtPh)+(AuxilioTransporte)+(produccion)));
-                String sueldobruto = (nf.format((nHoras*vEscolaridad)));
                 String tDescuentos = nf.format(0);
-                txtTotalDescuentos.setText(tDescuentos);
-                txtSueldoBruto.setText(sueldobruto);
-                txtSueldoNeto.setText(sueldoneto);
+                String descuentos = nf.format(0);
+                String sueldoneto = (nf.format((nHoras*vEscolaridad)+(vtPh)+(AuxilioTransporte)+(produccion)));
                 
+                cambiarCaracteristicas(descuentos,vEscolaridad,nHoras,AuxilioTransporte,sueldoneto,produccion,tDescuentos);
+
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error : " + e);
