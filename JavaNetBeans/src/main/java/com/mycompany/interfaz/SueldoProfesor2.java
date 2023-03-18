@@ -16,6 +16,7 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
     private final double SalarioMinimo = 1_300_000;
     private double AuxilioTransporte =  140_606;
     private final double vSubHijo = 150_000;
+    private NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
 
     /**
      * Creates new form SueldoProfesor
@@ -75,6 +76,8 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         txtSueldoBruto = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtSubsidioProduccion = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtSubsidioHijos = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -155,7 +158,7 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle Pago"));
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.setLayout(new java.awt.GridLayout(7, 2, 0, 3));
+        jPanel2.setLayout(new java.awt.GridLayout(8, 2, 0, 3));
 
         jLabel8.setText("Sueldo Bruto");
         jPanel2.add(jLabel8);
@@ -167,6 +170,17 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtSueldoBruto);
+
+        jLabel13.setText("Subsidio por Produccion");
+        jPanel2.add(jLabel13);
+
+        txtSubsidioProduccion.setEditable(false);
+        txtSubsidioProduccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSubsidioProduccionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtSubsidioProduccion);
 
         jLabel12.setText("Subsidio Hijos");
         jPanel2.add(jLabel12);
@@ -275,38 +289,58 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         int spinner = (int) sprHijos.getValue();
-        System.out.println(spinner);
-        
-        NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
         
         double vtPh = vSubHijo * spinner;
-        System.out.println(vtPh);
-        
+
         int vEscolaridad = retornarEscolaridad();
         
         double nHoras = Integer.parseInt(txtHorasTrabajadas.getText());
+        
         double desPension = 0.05;
         double desSalud = 0.05;
         
         if ((nHoras*vEscolaridad) > (SalarioMinimo*2)) {
+            /*
+            El auxilio de transporte se aplica cuando el numero de horas trabajadas multiplicado por la escolaridad de la persona
+            es mayor a dos veces al salario minimo, por lo que si es mayor entonces no se le da subsidio o auxilio de transporte.
+            */
             AuxilioTransporte = 0;
         }
         
         try {
             if ((nHoras*vEscolaridad) > (SalarioMinimo)) {
                 
+                /*
+                Si el numero de horas multiplicado por el valor de la escolaridad es mayor a un salario minimo
+                Se ejecuta el siguiente codigo
+                */
+                
+                //---------------------------------------------------------------------------------|
+                
                 String descuentos = nf.format((nHoras*vEscolaridad)*desPension);
+                /*
+                Descuento de Pension y Salud tienen el mismo porcentaje de descuento : 0.05 o 5%
+                */
                 txtDescuentoPension.setText(descuentos);
                 txtDescuentoSalud.setText(descuentos);
+                
+                //---------------------------------------------------------------------------------|
+              
                 txtSubsidioHijos.setText(nf.format(vSubHijo*spinner));
+                
+                //El valor del Auxilio de tranporte depende de la condicion de arriba.
                 txtSubsidioTransporte.setText(nf.format(AuxilioTransporte));
+                
                 String sueldo = nf.format(((nHoras*vEscolaridad) - ((nHoras*vEscolaridad)*0.10))+(vtPh));
                 String tDescuentos = nf.format((nHoras*vEscolaridad)*0.10);
+                
                 txtTotalDescuentos.setText(tDescuentos);
+                txtSubsidioProduccion.setText(nf.format((nHoras*vEscolaridad)));
                 txtSueldoBruto.setText(nf.format((nHoras*vEscolaridad)));
                 txtSueldoNeto.setText(sueldo);
                 
             } else {
+                txtSubsidioProduccion.setText(nf.format(0));
                 txtSubsidioTransporte.setText(nf.format(AuxilioTransporte));
                 txtDescuentoPension.setText(nf.format(0));
                 txtSubsidioHijos.setText(nf.format(vSubHijo*spinner));
@@ -346,6 +380,10 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_ckbProduccionActionPerformed
+
+    private void txtSubsidioProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubsidioProduccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSubsidioProduccionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,6 +430,7 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -408,6 +447,7 @@ public class SueldoProfesor2 extends javax.swing.JFrame {
     private javax.swing.JTextField txtDescuentoSalud;
     private javax.swing.JTextField txtHorasTrabajadas;
     private javax.swing.JTextField txtSubsidioHijos;
+    private javax.swing.JTextField txtSubsidioProduccion;
     private javax.swing.JTextField txtSubsidioTransporte;
     private javax.swing.JTextField txtSueldoBruto;
     private javax.swing.JTextField txtSueldoNeto;
